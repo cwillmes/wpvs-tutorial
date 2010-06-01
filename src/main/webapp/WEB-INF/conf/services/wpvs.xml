@@ -56,7 +56,7 @@
         <Abstract>The elevation model of the campus of the University of Cologne</Abstract>
         <BatchedMTStoreId>campus</BatchedMTStoreId>
       </DEMDataset>
-      <DEMTextureDataset RequestTimeout="15">
+      <DEMTextureDataset RequestTimeout="3600">
         <Title>campusortho</Title>
         <Name>Aerial photographs of 2003</Name>
         <!-- Maximum size of a texel after projection -->
