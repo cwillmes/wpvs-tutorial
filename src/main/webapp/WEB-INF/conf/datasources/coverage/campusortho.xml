@@ -3,15 +3,15 @@
   crs="EPSG:26912" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.deegree.org/datasource/coverage/raster http://schemas.deegree.org/datasource/0.5.0/coverage/raster.xsd">
   <Resolution res="1.27">
-    <RasterDirectory fileType="jpg">../../../data/coverage/campusortho/1</RasterDirectory>
+    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/1</RasterDirectory>
   </Resolution>
   <Resolution res="2.54">
-    <RasterDirectory fileType="jpg">../../../data/coverage/campusortho/2</RasterDirectory>
+    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/2</RasterDirectory>
   </Resolution>
   <Resolution res="5.08">
-    <RasterDirectory fileType="jpg">../../../data/coverage/campusortho/3</RasterDirectory>
+    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/3</RasterDirectory>
   </Resolution>
   <Resolution res="10.16">
-    <RasterDirectory fileType="jpg">../../../data/coverage/campusortho/4</RasterDirectory>
+    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/4</RasterDirectory>
   </Resolution>
 </MultiResolutionRaster>
