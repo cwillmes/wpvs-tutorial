@@ -6,4 +6,4 @@ export ORTHO_SRC=~/geodaten/christian_wilmes/Campus3D/Ortho/LuftbildWMS/campusOr
 export TARGET_DIR=src/main/webapp/WEB-INF/data/coverage/campusortho
 rm -Rf $TARGET_DIR
 mkdir -p $TARGET_DIR
-$D3_TOOLBOX RTBClient -it jpg -num_levels 4 -ot jpg -rl $ORTHO_SRC -rol $TARGET_DIR -interpolation bl -v -s_srs EPSG:31466 -t_srs EPSG:31466
+$D3_TOOLBOX RTBClient -it jpg -num_levels 4 -ot bin -rl $ORTHO_SRC -rol $TARGET_DIR -interpolation bl -v -s_srs EPSG:31466 -t_srs EPSG:31466
