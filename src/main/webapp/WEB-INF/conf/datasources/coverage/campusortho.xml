@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MultiResolutionRaster configVersion="0.5.0" xmlns="http://www.deegree.org/datasource/coverage/raster"
-  crs="EPSG:26912" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  crs="EPSG:31466" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.deegree.org/datasource/coverage/raster http://schemas.deegree.org/datasource/0.5.0/coverage/raster.xsd">
   <Resolution res="1.27">
     <RasterDirectory fileType="bin">../../../data/coverage/campusortho/1</RasterDirectory>
