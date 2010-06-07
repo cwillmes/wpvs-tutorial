@@ -46,7 +46,7 @@
         <md:Type codeSpace="http://www.deegree.org">Description</md:Type>
       </md:Keywords>
       <BaseCRS>EPSG:31466</BaseCRS>
-      <TranslationToLocalCRS x="-2562750.0" y="-5641995.0"/>
+      <TranslationToLocalCRS x="-2560250.0" y="-5638990.0"/>
       <!-- Geometry quality after projection -->
       <MaxPixelError>5</MaxPixelError>
       <DEMDataset>
