@@ -71,7 +71,22 @@
         <!--HeightISOColor>#221109</HeightISOColor-->
         <MinZValue>0</MinZValue>
         <!--MaxZValue>500</MaxZValue-->
-      </ColormapDataset>      
+      </ColormapDataset>
+      <RenderableDataset>
+        <Title>buildings</Title>
+        <Name>Buildings of the city</Name>
+        <Abstract>The building of the city</Abstract>
+        <RenderableStoreId>buildings</RenderableStoreId>
+        <MaxPixelError>1</MaxPixelError>
+        <SwitchLevels>
+          <Level min="0.0" max="0.03" />
+          <Level min="0.03" max="0.05" />
+          <Level min="0.05" max="0.09" />
+          <Level min="0.09" max="0.85" />
+          <Level min="0.85" max="1.1" />
+          <Level min="1.1" max="10" />
+        </SwitchLevels>
+      </RenderableDataset>      
     </DatasetDefinitions>
   </ServiceConfiguration>
 </deegreeWPVS>
