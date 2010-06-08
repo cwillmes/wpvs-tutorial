@@ -77,7 +77,7 @@
         <Name>Buildings of the city</Name>
         <Abstract>The building of the city</Abstract>
         <RenderableStoreId>buildings</RenderableStoreId>
-        <MaxPixelError>1</MaxPixelError>
+        <MaxPixelError>5</MaxPixelError>
         <SwitchLevels>
           <Level min="0.0" max="0.03" />
           <Level min="0.03" max="0.05" />

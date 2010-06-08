@@ -2,7 +2,7 @@
 D3_TOOLBOX=~/workspace/deegree-tools/target/appassembler/bin/d3toolbox
 BUILDING_DIR=~/geodaten/christian_wilmes/Campus3D/Buildings/d3buildings
 
-TARGET_DIR=src/main/webapp/WEB-INF/data/coverage/renderable/buildings
+TARGET_DIR=src/main/webapp/WEB-INF/data/renderable/buildings
 rm -Rf $TARGET_DIR
 mkdir -p $TARGET_DIR
 INPUT_FILES="$BUILDING_DIR/*.gml"
