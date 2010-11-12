@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MultiResolutionRaster configVersion="0.6.0" xmlns="http://www.deegree.org/datasource/coverage/raster"
-  crs="EPSG:31466" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.deegree.org/datasource/coverage/raster http://schemas.deegree.org/datasource/raster/0.6.0/raster.xsd">
-  <StorageCRS>EPSG:31466</StorageCRS>
-  <Resolution res="1.27">
-    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/1</RasterDirectory>
-  </Resolution>
-  <Resolution res="2.54">
-    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/2</RasterDirectory>
-  </Resolution>
-  <Resolution res="5.08">
-    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/3</RasterDirectory>
-  </Resolution>
-  <Resolution res="10.16">
-    <RasterDirectory fileType="bin">../../../data/coverage/campusortho/4</RasterDirectory>
-  </Resolution>
-</MultiResolutionRaster>
+<raster:MultiResolutionRaster configVersion="3.0.0" xmlns:raster="http://www.deegree.org/datasource/coverage/raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/coverage/raster raster.xsd ">
+  <raster:StorageCRS>EPSG:31466</raster:StorageCRS>
+  <raster:Resolution res="1.27">
+    <raster:RasterDirectory>../../../data/coverage/campusortho/1</raster:RasterDirectory>
+  </raster:Resolution>
+  <raster:Resolution res="2.54">
+    <raster:RasterDirectory>../../../data/coverage/campusortho/2</raster:RasterDirectory>
+  </raster:Resolution>
+  <raster:Resolution res="5.08">
+    <raster:RasterDirectory>../../../data/coverage/campusortho/3</raster:RasterDirectory>
+   </raster:Resolution>
+  <raster:Resolution res="10.16">
+    <raster:RasterDirectory>../../../data/coverage/campusortho/4</raster:RasterDirectory>
+  </raster:Resolution>
+</raster:MultiResolutionRaster>
