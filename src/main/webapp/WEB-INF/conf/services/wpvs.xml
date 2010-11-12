@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<deegreeWPVS configVersion="0.5.0" xmlns="http://www.deegree.org/services/wpvs" xmlns:md="http://www.deegree.org/webservices"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/services/wpvs http://schemas.deegree.org/wpvs/0.5.0/wpvs_configuration.xsd">
+<deegreeWPVS configVersion="3.0.0" xmlns="http://www.deegree.org/services/wpvs" xmlns:md="http://www.deegree.org/webservices"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/services/wpvs http://schemas.deegree.org/services/wpvs/3.0.0/wpvs_configuration.xsd">
   <ServiceConfiguration>
     <!-- Configures the number of textures stored in GPU (Graphic Processing Unit) memory, i.e. ready for rendering. -->
     <TexturesInGPUMem>300</TexturesInGPUMem>
@@ -40,11 +40,11 @@
       <Title>Datasets offered by the WPVS</Title>
       <MetadataURL>http://schemas.deegree.org/services/wpvs/</MetadataURL>
       <Abstract>This definition is a container for all available datasets</Abstract>
-      <md:Keywords>
+      <!-- md:Keywords>
         <md:Keyword lang="de_DE">Beschreibung von der Datasetdefinition</md:Keyword>
         <md:Keyword lang="en_US">Describing the dataset defintion</md:Keyword>
         <md:Type codeSpace="http://www.deegree.org">Description</md:Type>
-      </md:Keywords>
+      </md:Keywords -->
       <BaseCRS>EPSG:31466</BaseCRS>
       <TranslationToLocalCRS x="-2560250.0" y="-5638990.0"/>
       <!-- Geometry quality after projection -->
