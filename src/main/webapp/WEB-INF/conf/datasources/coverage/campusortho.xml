@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<raster:MultiResolutionRaster configVersion="3.0.0" xmlns:raster="http://www.deegree.org/datasource/coverage/raster" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/coverage/raster raster.xsd ">
+<raster:MultiResolutionRaster configVersion="3.0.0" xmlns:raster="http://www.deegree.org/datasource/coverage/raster" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.deegree.org/datasource/coverage/raster http://schemas.deegree.org/datasource/coverage/raster/3.0.0/raster.xsd">
   <raster:StorageCRS>EPSG:31466</raster:StorageCRS>
   <raster:Resolution res="1.27">
     <raster:RasterDirectory>../../../data/coverage/campusortho/1</raster:RasterDirectory>
