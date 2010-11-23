@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<raster:MultiResolutionRaster configVersion="3.0.0" xmlns:raster="http://www.deegree.org/datasource/coverage/raster" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.deegree.org/datasource/coverage/raster http://schemas.deegree.org/datasource/coverage/raster/3.0.0/raster.xsd">
+  <raster:StorageCRS>EPSG:31466</raster:StorageCRS>
+  <raster:Resolution res="1.27">
+    <raster:RasterDirectory>../../../data/coverage/osm/1</raster:RasterDirectory>
+  </raster:Resolution>
+  <raster:Resolution res="2.54">
+    <raster:RasterDirectory>../../../data/coverage/osm/2</raster:RasterDirectory>
+  </raster:Resolution>
+  <raster:Resolution res="5.08">
+    <raster:RasterDirectory>../../../data/coverage/osm/3</raster:RasterDirectory>
+   </raster:Resolution>
+  <raster:Resolution res="10.16">
+    <raster:RasterDirectory>../../../data/coverage/osm/4</raster:RasterDirectory>
+  </raster:Resolution>
+</raster:MultiResolutionRaster>

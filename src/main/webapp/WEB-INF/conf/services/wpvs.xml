@@ -45,8 +45,8 @@
         <md:Keyword lang="en_US">Describing the dataset defintion</md:Keyword>
         <md:Type codeSpace="http://www.deegree.org">Description</md:Type>
       </md:Keywords -->
-      <BaseCRS>EPSG:31466</BaseCRS>
-      <TranslationToLocalCRS x="-2560250.0" y="-5638990.0"/>
+      <BaseCRS>EPSG:23030</BaseCRS>
+      <TranslationToLocalCRS x="-879731.489" y="-4571195.335"/>
       <!-- Geometry quality after projection -->
       <MaxPixelError>5</MaxPixelError>
       <DEMDataset>
@@ -54,14 +54,14 @@
         <Title>dem</Title>
         <Name>Elevation model</Name>
         <Abstract>The elevation model of the campus of the University of Cologne</Abstract>
-        <BatchedMTStoreId>campus</BatchedMTStoreId>
+        <BatchedMTStoreId>dem</BatchedMTStoreId>
       </DEMDataset>
       <DEMTextureDataset RequestTimeout="3600">
-        <Title>campusortho</Title>
-        <Name>Aerial photographs of 2003</Name>
+        <Title>osm</Title>
+        <Name>OSM Map of Barcelona</Name>
         <!-- Maximum size of a texel after projection -->
         <MaxProjectedTexelSize>1</MaxProjectedTexelSize>
-        <CoverageStoreId>campusortho</CoverageStoreId>
+        <CoverageStoreId>osm</CoverageStoreId>
       </DEMTextureDataset> 
       <ColormapDataset>
         <Title>colormap</Title>
