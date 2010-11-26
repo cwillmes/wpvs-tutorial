@@ -13,50 +13,70 @@
 = How to setup deegree3 WPVS =
 This is a practical oriented HowTo for the setup of an deegree3 WPVS.
 It goes step by step with the use of provided sample data. All sources of the sample data are given, so you can follow the HowTo completely on your own.
-At the moment this tutorial will work precisely only on unix operating. Windows yousers can use this tutorial also but should be aware, every time fiel/programm pathes and shell scripts are given. The CityGMLConverter tool works at the moment alos only on unix systems (because of hardcoded internal pathes, this will be changed until the beta release of the software).
-More precise information about the different parametrs etc. used for the setup will be explained in the official deegree3 documetation or in other resources for example in the deegre wiki.
 
-= Checkout from SVN and build deegree3  =
+All the config files are prepared in a git repository on github. They are available from here: https://github.com/cwillmes/wpvs-tutorial
 
-Please checkout the deegree3 source from svn and bild it, to proceed further.
+At the moment this tutorial will work precisely only on unix operating. Windows users can use this tutorial also but should be aware, every time file/programm pathes and shell scripts are given. The CityGMLConverter tool also works at the moment only on unix systems (because of hardcoded internal pathes, this will be changed until the beta release of the software).
+
+More precise information about the different parametrs of the deegree3 tools etc. used for the setup will be explained in the official deegree3 documetation or in other resources for example in the deegree wiki.
+
+
+== Checkout from SVN and build deegree3  ==
+
+Please checkout the deegree3 source from svn and build it, to proceed further.
 You can refer to the [[deegree3/BuildingDeegree3|BuildingDeegree3]] manual in this wiki for this task.
 
 ==  Preparing the Data ==
 
-For this tutorial, we will prepare a test dataset of the the area of Barcelona (Spain). Barcelona has some nice terrain (great altitude variablitiy) and some nice building models on the Google 3D Warehouse, which we will use in this tutorial. 
+For this tutorial, we will prepare a test dataset of the the area of Barcelona (Spain). Barcelona has some nice terrain (good altitude variance of the area - it is quite "hilly"), a good OpenStreetMap coverage and some nice building models on the Google 3D Warehouse, which we will use for this tutorial. 
 
-=== DEM ===
-We will use the free available SRTM data for the DEM of our tutorial dataset.
-
-Download the File srtm_37_04.zip from http://srtm.csi.cgiar.org/, and clipped it to the area of the barcelona [[http://tmintt.eu/content/rendering-osm-maps-maperitive|OSM map]]. You can find a HowTo describing this task in detail [[http://tmintt.eu/content/srtm-dem-conversion-gdal|here]].
-
-But you can also download directly the already clipped DEM from [[http://campusgis.de/3D/dl/tutorial/barcelona_warped_dem.tif|here]].
-
-Run the DEMDatasetGenerator tool on the data:
-{{{
-$/path/to/d3toolbox DEMDatasetGenerator -rl barcelona_transformed_dem.tif -it tif -s_srs EPSG:2062 -o /path/to/target/batchedmt/dir -ol 10 -or 64 -mh 1500 -v
-}}}
+It is necessary for the WPVS, that all geographic data is projected into a metric coordiante system because our area of interest is within the borders of UTM zone 30N we us the [[http://spatialreference.org/ref/epsg/23030/|EPSG:23030]] for all our input data.
 
 === Coverage ===
 
-We will use a rendered OpenStreetMap Map as the DEMTextureDataset for the WPVS in this tutorial.
+We will use a rendered OpenStreetMap Map as the DEMTextureDataset (Coverage) for the WPVS in this tutorial.
 
 You can download the sample Dataset from [[http://campusgis.de/3D/dl/tutorial/barcelona-osm-map.zip|here]]. 
-Or you can create a map like this yourself, it is explained in detail in [[http://tmintt.eu/content/rendering-osm-maps-maperitive|tutorial]] how to do this.
+Or you can create a map like this yourself, it is explained in detail in this [[http://tmintt.eu/content/rendering-osm-maps-maperitive|tutorial]].
 
-For some reason, the import with RTBClient of the barcelona-osm-map.png with on the fly transformation from EPSG:4326 to EPSG:2062 did not worked in this case. (This worked for the author with maperitive rendered maps of cologne before... maybe a problem with the CRS definition in deegree or in GDAL.)
+To get the data into the deegree3 WPVS backend, we use the RTBClient tool of the d3toolbox. The following script "prepare-coverage.sh" (which is available from the [[https://github.com/cwillmes/wpvs-tutorial|wpvs-tutorial git repository]]) shows how the RTBClient is used to do that:
 
-But with projecting the data using gdalwarp before it worked.
-
-So run the following command:
 {{{
-$ gdalwarp -s_srs EPSG:4326 -t_srs EPSG:2062 barcelona-osm-map.png barcelona-osm.tif
+# only adapt the following two lines
+export D3_TOOLBOX=~/dev/d3/deegree-tools/target/appassembler/bin/d3toolbox
+export COVERAGE_SRC=~/dev/wpvs-tutorial/SampleData/Coverage/barcelona-osm-map.png
+
+# create raster pyramid in 'src/main/webapp/WEB-INF/data/coverage'
+export TARGET_DIR=src/main/webapp/WEB-INF/data/coverage/osm
+rm -Rf $TARGET_DIR
+mkdir -p $TARGET_DIR
+$D3_TOOLBOX RTBClient -it png -num_levels 4 -ot bin -rl $COVERAGE_SRC -rol $TARGET_DIR -interpolation bl -v -s_srs EPSG:4326 -t_srs EPSG:23030
 }}}
 
-An example for a RTBClient run on the data would be:
+'''''Note:''''' adjust your pathes D3_TOOLBOX and COVERAGE_SRC according to your computer environment.
+Be patient, this RTBClient run will take some time, maybe it is time to get a cup of tea or coffee. :)
+
+=== DEM ===
+We will use the freely available SRTM dataset as the DEM of our tutorial dataset.
+
+Download the file srtm_37_04.zip from http://srtm.csi.cgiar.org/, and clip it to the area of the barcelona [[http://tmintt.eu/content/rendering-osm-maps-maperitive|OSM map]], we will use for the coverage. You can find a HowTo describing this task in detail [[http://tmintt.eu/content/srtm-dem-conversion-gdal|here]].
+
+But you can also download directly the already clipped DEM from [[http://campusgis.de/3D/dl/tutorial/barcelona_23030_dem.tif|here]].
+
+Run the DEMDatasetGenerator tool on the data (using the script from the wpvs-tutorial git repo):
 {{{
-$/path/to/d3toolbox RTBClient -it tif -num_levels 4 -ot bin -rl barcelona-osm.tif -rol /path/to/target/coverage/dir -interpolation bl -v -s_srs EPSG:4326 -t_srs EPSG:2062
+# only adapt the following two lines
+export D3_TOOLBOX=~/dev/d3/deegree-tools/target/appassembler/bin/d3toolbox
+export DEM_SRC=~/dev/wpvs-tutorial/Data_23030/DEM/barcelona_23030_dem.tif
+
+# create Multiresolution DEM in 'src/main/webapp/WEB-INF/data/batchedmt'
+export TARGET_DIR=src/main/webapp/WEB-INF/data/batchedmt
+rm -Rf $TARGET_DIR 
+mkdir -p $TARGET_DIR
+$D3_TOOLBOX DEMDatasetGenerator -rl $DEM_SRC -it tif -s_srs EPSG:23030 -o $TARGET_DIR -ol 10 -or 64 -mh 150 -v
 }}}
+
+'''''Note:''''' adjust your pathes D3_TOOLBOX and DEM_SRC according to your computer environment.
 
 === Buildings ===
 
@@ -66,43 +86,64 @@ You can consult a tutorial on how to create CityGML models suitable for import w
 
 The [[http://tmintt.eu/content/converting-sketchup-3d-models-citygml-use-deegree3-wpvs|CityGMLConverter]] tool already imports the CityGML models into the deegree3 WPVS backend, by using the deegree3 DataManager tool.
 
-But an example run of the DataManager would look like this:
+But you can also download the three already converted building CityGML's from [[http://campusgis.de/3D/dl/tutorial/Buildings.zip|here]].
+
+If you did not used the CityGMLConverter, you can run the following script (also available from the [[https://github.com/cwillmes/wpvs-tutorial|wpvs-tutorial repo]]):
 {{{
-  $/path/to/d3toolbox DataManager -a import -f CityGMLFile.xml -host org.deegree.services.wpvs.io.file.FileBackend -fbd /path/to/filebackend -t building -ql 2 -mtd 1024x1024 -tt "-2560250.0,-5638990.0" -v 
+# only adapt the following two lines
+D3_TOOLBOX=~/dev/d3/deegree-tools/target/appassembler/bin/d3toolbox
+BUILDING_DIR=~/dev/wpvs-tutorial/Data_23030/Buildings
+
+TARGET_DIR=src/main/webapp/WEB-INF/data/renderable/buildings
+rm -Rf $TARGET_DIR
+mkdir -p $TARGET_DIR
+INPUT_FILES="$BUILDING_DIR/*.gml"
+for f in $INPUT_FILES
+do
+  echo "Processing $f..."
+  $D3_TOOLBOX DataManager -a import -f $f -host org.deegree.services.wpvs.io.file.FileBackend -fbd $TARGET_DIR -t building -ql 2 -mtd 1024x1024 -tt "-925892.424,-4589021.314" -v
+done
 }}}
 
-
-== Configuring and runing the setup Scripts ==
-
-Downloading the setup scripts
-
-Go to: https://github.com/cwillmes/test-wpvs
-and download the repository, by clicking on "downloads".
-
-Extract the zip-ed repository to a working location of your choice.
-
-=== Preparing the elevation model ===
-
-Open the file prepare-dem.sh in a texteditor.
-
-Adjust the Pathes D3_TOOLBOX and DEM_SRC to your environment.
-
-Run the script in a terminal:
-> ./prepare-dem.sh
+'''''Note:''''' adjust the BUILDING_DIR to the location where you uncompressed the Buildings.zip into, or where your CityGML's may be. Also note, that the building files should have the ".gml" suffix, otherwise adjust the script accordingly.
 
 
-=== Preparing the Coverage ===
+== Configuration of the Service ==
 
-Open the file prepare-orthophoto.sh in a texteditor.
+If you used the wpvs-tutorial github repository, to go through this tutorial, your service is already properly configured. But in case you made a custom WPVS or if you might want to understand the d3 WPVS configuration, this section will describe how.
 
-Adjust the Pathes for D3_TOOLBOX and ORTHO_SRC to your environment.
-
-Run the script in a terminal:
-> ./prepare-orthophoto.sh
-
-Be aware that this task will need some time to process (> 10 mins. for the sample dataset)
+=== Folder structure of a deegree3 WPVS service ===
 
 
 
-'''''Please be aware that this is a firt shot (shortly before deegreeday) of this howto to get started, it will be worked out in more detail in the coming days.'''''
+=== Configuration Documents ===
+
+ToDo...
+
+== Testrun with InteractiveWPVS ==
+
+No everything should be ready for a testrun with the InteractiveWPVS tool.
+
+Just run the start.sh script (also available from the [[https://github.com/cwillmes/wpvs-tutorial|wpvs-tutorial repo]]):
+{{{
+# only adapt the following two lines
+export LD_LIBRARY_PATH=/home/christian/dev/d3/libs/jogl-1.1.1-linux-amd64/lib
+export D3_TOOLBOX=~/dev/d3/deegree-tools/target/appassembler/bin/d3toolbox
+
+$D3_TOOLBOX InteractiveWPVS -wpvsconfig src/main/webapp/WEB-INF/conf
+}}}
+
+'''''Note:''''' adjust the pathes to your local JOGL instance. 
+
+
+== Running the WPVS as a service in Tomcat ==
+
+ToDo...
+
+hint:
+{{{
+mvn package
+}}}
+
+For any questions on this tutorial please, contact Christian Willmes (c.willmes@uni-koeln.de), or write to the deegree-users mailinglist.
 

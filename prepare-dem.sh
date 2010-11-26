@@ -1,6 +1,6 @@
 # only adapt the following two lines
 export D3_TOOLBOX=~/dev/d3/deegree-tools/target/appassembler/bin/d3toolbox
-export DEM_SRC=~/dev/wpvs-tutorial/Data_23030/DEM/barcelona_23030_dem.tif
+export DEM_SRC=~/dev/Daten/wpvs-tutorial/DEM/barcelona_23030_dem.tif
 
 # create Multiresolution DEM in 'src/main/webapp/WEB-INF/data/batchedmt'
 export TARGET_DIR=src/main/webapp/WEB-INF/data/batchedmt
